@@ -1,0 +1,57 @@
+/* style.css */
+
+/* خلفية زخرفية خفيفة */
+.pattern-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
+    opacity: 0.04; pointer-events: none; z-index: -1;
+}
+
+/* القوس المغربي */
+.moroccan-arch {
+    border-radius: 150px 150px 0 0;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.5s ease;
+}
+.moroccan-arch:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+}
+
+/* Filter Buttons */
+.filter-btn {
+    background: transparent;
+    border: 1px solid #C05621;
+    color: #C05621;
+    padding: 10px 30px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.filter-btn:hover, .filter-btn.active {
+    background: #C05621;
+    color: white;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #FDFBF7; }
+::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
+
+/* Animations Keyframes */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fadeUp 1s ease-out forwards; }
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-down { animation: fadeDown 1s ease-out forwards; }

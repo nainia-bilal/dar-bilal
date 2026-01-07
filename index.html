@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAR BILAL | Authentic Moroccan Gastronomy</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              terra: "#C05621" /* لون الطين */,
+              gold: "#D4AF37" /* الذهبي */,
+              royal: "#0F172A" /* الأزرق الملكي */,
+              cream: "#FDFBF7" /* لون الخلفية */,
+            },
+            fontFamily: {
+              serif: ["Amiri", "serif"],
+              sans: ["Montserrat", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Montserrat:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body
+    class="bg-cream text-royal antialiased overflow-x-hidden selection:bg-terra selection:text-white"
+  >
+    <div class="pattern-overlay"></div>
+
+    <nav
+      class="fixed top-0 w-full p-6 flex justify-between items-center z-50 bg-cream/90 backdrop-blur-md border-b border-gold/20 transition-all duration-300"
+      id="navbar"
+    >
+      <div class="text-3xl font-serif font-bold text-terra">DAR BILAL.</div>
+
+      <div
+        class="hidden md:flex gap-8 font-sans text-xs tracking-[0.2em] uppercase font-bold"
+      >
+        <a href="#hero" class="hover:text-terra transition-colors">Home</a>
+        <a href="#menu" class="hover:text-terra transition-colors">The Menu</a>
+        <a href="#about" class="hover:text-terra transition-colors"
+          >Our Story</a
+        >
+        <a href="#contact" class="hover:text-terra transition-colors"
+          >Contact</a
+        >
+      </div>
+
+      <div
+        class="relative cursor-pointer hover:text-terra transition-colors"
+        onclick="toggleCart()"
+      >
+        <i class="fas fa-shopping-basket text-xl"></i>
+        <span
+          id="cart-count"
+          class="absolute -top-2 -right-2 bg-terra text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center"
+          >0</span
+        >
+      </div>
+    </nav>
+
+    <header
+      id="hero"
+      class="h-screen flex items-center justify-center relative overflow-hidden"
+    >
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://media.istockphoto.com/id/1483829797/photo/hassan-ii-mosque.jpg?s=612x612&w=0&k=20&c=jQpIHD7noFvs_AFH884tt_NTQgbk6pPc9RtUjuYlg_A="
+          class="w-full h-full object-cover brightness-50 parallax-img"
+          alt="Moroccan Food"
+        />
+      </div>
+      <div class="relative z-10 text-center text-white px-4">
+        <span
+          class="block font-sans text-gold tracking-[0.5em] text-sm mb-4 animate-fade-down"
+          >EST. 2026</span
+        >
+        <h1 class="font-serif text-6xl md:text-9xl mb-6 animate-fade-up">
+          Taste of Morocco
+        </h1>
+        <p
+          class="font-sans text-lg max-w-2xl mx-auto mb-10 opacity-90 animate-fade-up delay-200"
+        >
+          Curated by <strong>Bilal Nainia</strong>. A journey through the sweet
+          and savory heritage of the Kingdom.
+        </p>
+        <a
+          href="#menu"
+          class="px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-royal transition-all uppercase tracking-widest font-bold text-xs animate-fade-up delay-300"
+        >
+          Explore Menu
+        </a>
+      </div>
+    </header>
+
+    <section id="menu" class="py-20 px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-5xl text-royal mb-4">The Collection</h2>
+        <div class="flex justify-center gap-6 mt-8">
+          <button
+            onclick="filterMenu('all')"
+            class="filter-btn active"
+            data-filter="all"
+          >
+            All Dishes
+          </button>
+          <button
+            onclick="filterMenu('maleh')"
+            class="filter-btn"
+            data-filter="maleh"
+          >
+            Savory (المالح)
+          </button>
+          <button
+            onclick="filterMenu('hlou')"
+            class="filter-btn"
+            data-filter="hlou"
+          >
+            Sweet (الحلو)
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="products-grid"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto"
+      ></div>
+    </section>
+
+    <section id="about" class="py-24 bg-royal text-cream relative">
+      <div
+        class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] opacity-5"
+      ></div>
+      <div class="max-w-4xl mx-auto text-center px-6 relative z-10">
+        <i class="fas fa-crown text-gold text-3xl mb-6"></i>
+        <h2 class="font-serif text-5xl mb-8">
+          The Essence of <span class="text-gold">Dar Bilal</span>
+        </h2>
+        <p class="font-sans leading-loose text-lg opacity-80 mb-6">
+          "Cooking is not just about ingredients; it's about history."
+        </p>
+        <p class="font-sans leading-loose opacity-70">
+          Welcome to my table. As a student at
+          <strong>Hassan II University</strong> and a passionate developer of
+          flavors, I have gathered the finest recipes from the Atlas to the
+          Sahara. Whether it's the rich spices of a Tagine or the delicate
+          sweetness of a Chebakia, every dish tells a story of Moroccan
+          hospitality.
+        </p>
+        <div class="text-center mt-10">
+    <span style="font-family: 'Great Vibes', cursive; font-size: 3rem; color: #D4AF37;">
+        Bilal Nainia
+    </span>
+</div>
+  chi haja mrhba bikom fi darna almaghribia alaslia 
+      </div>
+    </section>
+
+    <section id="contact" class="py-20 px-6 text-center">
+      <h2 class="font-serif text-5xl text-terra mb-12">Marhba Bikom</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div
+          class="p-8 border border-terra/20 rounded-2xl hover:bg-white hover:shadow-xl transition-all group"
+        >
+          <i
+            class="fas fa-phone-alt text-3xl text-gold mb-4 group-hover:scale-110 transition-transform"
+          ></i>
+          <h3 class="font-serif text-xl mb-2">Call Us</h3>
+          <p class="font-sans text-sm text-gray-500">+212 687755912</p>
+        </div>
+        <div
+          class="p-8 border border-terra/20 rounded-2xl hover:bg-white hover:shadow-xl transition-all group"
+        >
+          <i
+            class="fas fa-envelope text-3xl text-gold mb-4 group-hover:scale-110 transition-transform"
+          ></i>
+          <h3 class="font-serif text-xl mb-2">Email</h3>
+          <p class="font-sans text-sm text-gray-500">
+            nainiabilal@gmail.com
+          </p>
+        </div>
+        <div
+          class="p-8 border border-terra/20 rounded-2xl hover:bg-white hover:shadow-xl transition-all group"
+        >
+          <i
+            class="fas fa-map-marker-alt text-3xl text-gold mb-4 group-hover:scale-110 transition-transform"
+          ></i>
+          <h3 class="font-serif text-xl mb-2">Location</h3>
+          <p class="font-sans text-sm text-gray-500">Casablanca, Morocco</p>
+        </div>
+      </div>
+    </section>
+
+    <footer
+      class="bg-royal text-white py-10 text-center border-t border-white/10"
+    >
+      <div class="font-serif text-2xl mb-4">DAR BILAL.</div>
+      <p class="font-sans text-xs opacity-50 tracking-widest uppercase">
+        &copy; 2026 Developed by Bilal Nainia.
+      </p>
+    </footer>
+
+    <div
+      id="product-modal"
+      class="fixed inset-0 z-[100] hidden items-center justify-center backdrop-blur-sm bg-black/60"
+    >
+      <div
+        class="bg-cream w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row relative transform scale-95 opacity-0 transition-all duration-300"
+        id="modal-content"
+      >
+        <button
+          onclick="closeModal()"
+          class="absolute top-4 right-4 z-20 bg-white p-2 rounded-full text-terra hover:bg-terra hover:text-white transition-colors"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="w-full md:w-1/2 h-64 md:h-auto">
+          <img
+            id="modal-img"
+            src=""
+            class="w-full h-full object-cover"
+            alt=""
+          />
+        </div>
+        <div class="w-full md:w-1/2 p-10 flex flex-col justify-center">
+          <span
+            id="modal-category"
+            class="text-gold font-sans text-xs tracking-widest uppercase mb-2"
+            >Category</span
+          >
+          <h3 id="modal-title" class="font-serif text-4xl text-royal mb-4">
+            Title
+          </h3>
+          <p
+            id="modal-desc"
+            class="font-sans text-gray-600 mb-6 leading-relaxed"
+          >
+            Description
+          </p>
+          <div class="mb-6">
+            <h4 class="font-serif text-xl text-terra mb-2">Key Ingredients:</h4>
+            <p
+              id="modal-ingredients"
+              class="font-sans text-sm text-gray-500 italic"
+            >
+              List...
+            </p>
+          </div>
+          <div class="flex justify-between items-center mt-auto">
+            <span id="modal-price" class="font-serif text-3xl text-royal"
+              >0 MAD</span
+            >
+            <button
+              class="bg-terra text-white px-8 py-3 rounded-full font-sans font-bold hover:bg-royal transition-colors"
+            >
+              Order Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="cart-sidebar"
+      class="fixed top-0 right-0 w-full md:w-96 h-full bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-[60] flex flex-col"
+    >
+      <div class="p-6 bg-terra text-white flex justify-between items-center">
+        <h3 class="font-serif text-2xl">Your Tray</h3>
+        <button onclick="toggleCart()"><i class="fas fa-times"></i></button>
+      </div>
+      <div
+        id="cart-items"
+        class="flex-grow p-6 overflow-y-auto space-y-4"
+      ></div>
+      <div class="p-6 border-t">
+        <div class="flex justify-between font-serif text-xl mb-4">
+          <span>Total</span>
+          <span id="cart-total">0 MAD</span>
+        </div>
+        <button
+          class="w-full bg-royal text-white py-3 font-sans font-bold uppercase hover:bg-gold transition-colors"
+        >
+          Checkout
+        </button>
+      </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  </body>
+</html>
