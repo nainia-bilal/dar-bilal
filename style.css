@@ -55,3 +55,21 @@
     to { opacity: 1; transform: translateY(0); }
 }
 .animate-fade-down { animation: fadeDown 1s ease-out forwards; }
+
+/* Responsive Mobile Menu */
+#mobile-menu-backdrop { backdrop-filter: blur(2px); }
+
+#mobile-menu { /* off-canvas by default */
+    will-change: transform;
+}
+
+#mobile-menu.open {
+    transform: translateX(0) !important;
+}
+
+/* Simple hamburger styling (keeps it minimal and modern) */
+#mobile-menu-btn { background: transparent; border: none; }
+
+@media (min-width: 768px) {
+    #mobile-menu, #mobile-menu-backdrop { display: none; }
+}

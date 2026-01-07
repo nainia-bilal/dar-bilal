@@ -167,3 +167,50 @@ function updateCartUI() {
   const total = cart.reduce((sum, item) => sum + item.price, 0);
   cartTotalEl.innerText = total + " MAD";
 }
+
+// 7. Mobile menu (responsive hamburger + slide-in panel)
+function toggleMobileMenu() {
+  const menu = document.getElementById("mobile-menu");
+  const backdrop = document.getElementById("mobile-menu-backdrop");
+  const btn = document.getElementById("mobile-menu-btn");
+  const hamburger = document.getElementById("mobile-hamburger");
+  const closeIcon = document.getElementById("mobile-close");
+
+  if (!menu || !backdrop || !btn) return;
+
+  const isOpen = menu.classList.toggle("open");
+
+  if (isOpen) {
+    backdrop.classList.remove("opacity-0", "pointer-events-none");
+    backdrop.classList.add("opacity-100");
+    btn.setAttribute("aria-expanded", "true");
+    if (hamburger) hamburger.classList.add("hidden");
+    if (closeIcon) closeIcon.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  } else {
+    backdrop.classList.remove("opacity-100");
+    backdrop.classList.add("opacity-0", "pointer-events-none");
+    btn.setAttribute("aria-expanded", "false");
+    if (hamburger) hamburger.classList.remove("hidden");
+    if (closeIcon) closeIcon.classList.add("hidden");
+    document.body.style.overflow = "";
+  }
+}
+
+// Close mobile menu when backdrop clicked or Escape pressed
+(function attachMobileMenuHandlers() {
+  const backdrop = document.getElementById("mobile-menu-backdrop");
+  if (backdrop) {
+    backdrop.addEventListener("click", () => {
+      const menu = document.getElementById("mobile-menu");
+      if (menu && menu.classList.contains("open")) toggleMobileMenu();
+    });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const menu = document.getElementById("mobile-menu");
+      if (menu && menu.classList.contains("open")) toggleMobileMenu();
+    }
+  });
+})();
